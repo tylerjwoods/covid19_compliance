@@ -68,7 +68,7 @@ for i in range(0, detections.shape[2]):
 
         # extract the face ROI, conver it from BGR to RGB channel
         # ordering, resize it to 224x224, and preprocess it
-        face = image[startY:endy, startX: endX]
+        face = image[startY:endY, startX: endX]
         face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
         face = cv2.resize(face, (224, 224))
         face = img_to_array(face)
