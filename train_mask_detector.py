@@ -110,7 +110,7 @@ model = Model(inputs=baseModel.input, outputs=headModel)
 # loop over all layers in the base model and freeze them so they will
 # not be updated during the first training model
 for layer in baseModel.layers:
-    layers.trainable = False 
+    layer.trainable = False 
 
 # compile the model
 print("[INFO] compiling model...")
