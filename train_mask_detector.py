@@ -60,7 +60,7 @@ for i, imagePath in enumerate(imagePaths):
     image = preprocess_input(image)
 
     # update the data and labels lists, respectively
-    #data.append(image)
+    data.append(image)
     labels.append(label)
 
 # convert the data and labels to Numpy arrays
