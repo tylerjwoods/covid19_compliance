@@ -95,3 +95,4 @@ for i in range(0, detections.shape[2]):
 # show the output image
 cv2.imshow("Output", image)
 cv2.waitKey(0)
+
