@@ -36,8 +36,6 @@ ap.add_argument("-m", "--model", type=str,
     help="path to output face mask detector model")
 args = vars(ap.parse_args())
 
-print('hello')
-
 # initialize the initial learning rate, number of epochs to train for,
 # and batch size
 INIT_LR = 1e-3
@@ -73,6 +71,7 @@ labels = np.array(labels)
 lb = LabelBinarizer()
 labels = lb.fit_transform(labels)
 labels = to_categorical(labels)
+print(labels)
 
 # partition the data into training and testing splits using 80% 
 # of the data for training and the remaining 20% for testing
