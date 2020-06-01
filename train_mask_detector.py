@@ -75,7 +75,7 @@ print(labels)
 
 # partition the data into training and testing splits using 80% 
 # of the data for training and the remaining 20% for testing
-(trainX, testX, trainY, testY) = train_test_split(data, labels,
+X_train, X_test, y_train, y_test = train_test_split(data, labels,
         test_size=0.20, stratify=labels, random_state=42)
 
 # construct the training image generator for data augmentation
@@ -121,23 +121,23 @@ model.compile(loss="binary_crossentropy", optimizer=opt,
 # train the head of the network
 print("[INFO] training head...")
 H = model.fit(
-    aug.flow(trainX, trainY, batch_size=BS),
+    aug.flow(X_train, y_train, batch_size=BS),
     steps_per_epoch=len(trainX) // BS,
-    validation_data = (testX, testY),
-    validation_steps = len(testX) // BS,
+    validation_data = (X_test, y_test),
+    validation_steps = len(X_test) // BS,
     epochs=EPOCHS
 )
 
 # make predictions on the testing set
 print("[INFO] evaluating network...")
-predIdxs = model.predict(testX, batch_size=BS)
+predIdxs = model.predict(X_test, batch_size=BS)
 
 # for each image in the testing set we need to find the index
 # of the label with corresponding largest predicted probability
 predIdxs = np.argmax(predIdxs, axis=1)
 
 # show a nicely formatted classification report
-print(classification_report(testY.argmax(axis=1), predIdxs,
+print(classification_report(y_test.argmax(axis=1), predIdxs,
     target_names=lb.classes_))
 
 # serialize the model to disk
