@@ -45,7 +45,7 @@ blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300),
 # pass the blob through the network and obtain the face detections
 print("[INFO] computing face detections...")
 net.setInput(blob)
-detectinos = net.forward()
+detections = net.forward()
 
 # loop over the detections
 for i in range(0, detections.shape[2]):
