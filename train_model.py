@@ -19,138 +19,163 @@ from tensorflow.keras.utils import to_categorical
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
 from imutils import paths
 import matplotlib.pyplot as plt
-import argparse
+import pandas as pd
 import os
 
+# make the plot pretty
 plt.style.use('ggplot')
 
-ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dataset", required=True,
-    help="path to input dataset")
-ap.add_argument("-p", "--plot", type=str, default="plots/plot.png",
-    help="path to output loss/accuracy plot")
-ap.add_argument("-m", "--model", type=str,
-    default="face_mask_detector.model",
-    help="path to output face mask detector model")
-args = vars(ap.parse_args())
+def load_images_and_labels():
+    '''
+    Loads all images from directory 'images' with target as the folder
+    name. Images were scrapped from google.
+    inputs
+    ------
+    None
 
-# initialize the initial learning rate, number of epochs to train for,
-# and batch size
-learning_rate = 1e-3
-EPOCHS = 20
-BS = 32
+    returns
+    -------
+    images: numpy array of images
+    labels: numpy array of labels
+    '''
+    images = []
+    labels = []
+    # get list of images from the directory
+    image_paths = list(paths.list_images('images/'))
+    
+    # loop over the image_paths
+    for image_path in image_paths:
+        label = image_path.split(os.path.sep)[-2]
+        img = load_img(image_path, target_size=(224,224))
+        img = img_to_array(img)
+        img = preprocess_input(img)
 
-# grab the list of images in the dataset directory, then itialize
-# the list of images and class images
-print("...Loading images from folder...")
-imagePaths = list(paths.list_images(args["dataset"]))
-data = []
-labels = []
+        # add the image and label to the respective lists
+        images.append(img)
+        labels.append(label)
 
-# loop over the image paths
-for i, imagePath in enumerate(imagePaths):
-    # extract the class label from the filename
-    label = imagePath.split(os.path.sep)[-2]
+    # convert the images and labels to numpy arrays
+    images = np.array(images, dtype="float32")
+    labels = np.array(labels)
 
-    # load the input image (224x224) and preprocess it
-    image = load_img(imagePath, target_size=(224,224))
-    image = img_to_array(image)
-    image = preprocess_input(image)
+    return images, labels
 
-    # update the data and labels lists, respectively
-    data.append(image)
-    labels.append(label)
+def train_CNN(images, labels, epochs, learning_rate, bs):
+    '''
+    Train the CNN using transfer learning and images from 
+    load_images_and_labels().
+    '''
 
-# convert the data and labels to Numpy arrays
-data = np.array(data, dtype="float32")
-labels = np.array(labels)
+    # turn labels into binary labels
+    lb = LabelBinarizer()
+    labels = lb.fit_transform(labels)
+    labels = to_categorical(labels)
 
-# perform one-hot encoding on the labels
-lb = LabelBinarizer()
-labels = lb.fit_transform(labels)
-labels = to_categorical(labels)
-#print(labels)
+    # split data using 20% as testing data
+    X_train, X_test, y_train, y_test = train_test_split(images, labels,
+                                                        test_size=0.20, 
+                                                        stratify=labels, 
+                                                        random_state=17)
 
-# partition the data into training and testing splits using 20% 
-# for testing
-X_train, X_test, y_train, y_test = train_test_split(data, labels,
-        test_size=0.20, stratify=labels, random_state=42)
+    # transformations
+    train_transformations = ImageDataGenerator(
+        rotation_range=15,
+        width_shift_range=0.2, 
+        height_shift_range=0.2,
+        zoom_range=0.10,
+        shear_range=0.10,
+        horizontal_flip=True,
+        fill_mode="nearest" # constant, nearest, reflect, or wrap
+    )
 
-# construct the training image generator for data augmentation
-train_transformations = ImageDataGenerator(
-    rotation_range=15,
-    width_shift_range=0.2, 
-    height_shift_range=0.2,
-    zoom_range=0.10,
-    shear_range=0.10,
-    horizontal_flip=True,
-    fill_mode="nearest"
-)
+    # load the MobileNetV2 network, ensuring the head FC layer sets are 
+    # left off
+    base_model = MobileNetV2(weights="imagenet", include_top=False,
+            input_tensor=Input(shape=(224,224,3)))
 
-# load the MobileNetV2 network, ensuring the head FC layer sets are 
-# left off
-base_model = MobileNetV2(weights="imagenet", include_top=False,
-        input_tensor=Input(shape=(224,224,3)))
+    # build model head
+    head_model = base_model.output
+    head_model = AveragePooling2D(pool_size=(7,7))(head_model)
+    head_model = Flatten(name='flatten')(head_model)
+    head_model = Dense(128, activation='relu')(head_model)
+    head_model = Dropout(0.50)(head_model)
+    head_model = Dense(2, activation="softmax")(head_model)
 
-# build model head
-head_model = base_model.output
-head_model = AveragePooling2D(pool_size=(7,7))(head_model)
-head_model = Flatten(name='flatten')(head_model)
-head_model = Dense(128, activation='relu')(head_model)
-head_model = Dropout(0.50)(head_model)
-head_model = Dense(2, activation="softmax")(head_model)
+    # place the head FC model on top of the base model (this will become 
+    # the actual model we will train)
+    model = Model(inputs=base_model.input, outputs=head_model)
 
-# place the head FC model on top of the base model (this will become 
-# the actual model we will train)
-model = Model(inputs=base_model.input, outputs=head_model)
+    for layer in base_model.layers:
+        layer.trainable = False 
 
-# freeze layers from transferred model
-for layer in base_model.layers:
-    layer.trainable = False 
+    # initalize adam optimizer
+    opt = Adam(lr = learning_rate, decay = learning_rate / epochs)
 
-# compile the model
-print("...Compiling model...")
-# initalize adam optimizer
-opt = Adam(lr = learning_rate, decay = learning_rate / EPOCHS)
-model.compile(loss="binary_crossentropy", optimizer=opt,
-    metrics=["accuracy"])
+    # compile and fit model
+    model.compile(loss="binary_crossentropy", optimizer=opt,
+        metrics=["accuracy"])
+    history = model.fit(
+        train_transformations.flow(X_train, y_train, batch_size=bs),
+        steps_per_epoch=len(X_train) // bs,
+        validation_data = (X_test, y_test),
+        validation_steps = len(X_test) // bs,
+        epochs=epochs
+    )
 
-# train the head of the network
-print("...Training head...")
-H = model.fit(
-    train_transformations.flow(X_train, y_train, batch_size=BS),
-    steps_per_epoch=len(X_train) // BS,
-    validation_data = (X_test, y_test),
-    validation_steps = len(X_test) // BS,
-    epochs=EPOCHS
-)
+    # get predictions and generate confusion matrix data
+    y_pred = model.predict(X_test, batch_size=bs)
+    con_mat = confusion_matrix(y_test.argmax(axis=1), y_pred.argmax(axis=1))
 
-# make predictions on the testing set
-print("...Evaluating network...")
-predIdxs = model.predict(X_test, batch_size=BS)
+    # show a nicely formatted classification report
+    # print(classification_report(y_test.argmax(axis=1), y_pred,
+    #     target_names=lb.classes_))
 
-# for each image in the testing set we need to find the index
-# of the label with corresponding largest predicted probability
-predIdxs = np.argmax(predIdxs, axis=1)
+    # plot the loss and accuracy
+    N = epochs
+    plt.figure()
+    plt.plot(np.arange(0,N), history.history["loss"], label="train_loss")
+    plt.plot(np.arange(0,N), history.history["val_loss"], label="val_loss")
+    plt.plot(np.arange(0,N), history.history["accuracy"], label="train_acc")
+    plt.plot(np.arange(0,N), history.history["val_accuracy"], label="val_acc")
+    plt.xlabel("Epoch #")
+    plt.ylabel("Loss/Accuracy")
+    plt.legend()
+    plt.savefig('plots/plot_{}_{}.png'.format(epochs, bs))
 
-# show a nicely formatted classification report
-print(classification_report(y_test.argmax(axis=1), predIdxs,
-    target_names=lb.classes_))
+    # return the model, history, and confusion matrix
+    return model, history, con_mat 
 
-# serialize the model to disk
-print("...Saving mask detector model...")
-model.save(args["model"], save_format="h5")
+if __name__ == '__main__':
+    # this can be changed to fine-tune model as needed
+    # model is greater than 95% accurate with these
+    epochs = 20
+    learning_rate = 0.001
+    batch_size = 32
 
-# plot the training loss and accuracy
-N = EPOCHS
-plt.figure()
-plt.plot(np.arange(0,N), H.history["loss"], label="train_loss")
-plt.plot(np.arange(0,N), H.history["val_loss"], label="val_loss")
-plt.plot(np.arange(0,N), H.history["accuracy"], label="train_acc")
-plt.plot(np.arange(0,N), H.history["val_accuracy"], label="val_acc")
-plt.xlabel("Epoch #")
-plt.ylabel("Loss/Accuracy")
-plt.legend(loc="lower left")
-plt.savefig(args["plot"])
+    print('...Loading images...')
+    images, labels = load_images_and_labels()
+
+    print('...Building and evaluating model...')
+    model, history, con_mat = train_CNN(images, labels, epochs, 
+                                        learning_rate, batch_size)
+    
+    # save model
+    print('...Saving model...')
+    model.save("face_mask_detector2.model", save_format="h5")
+
+    # save history into dataframe
+    hist_df = pd.DataFrame(history.history)
+    hist_csv = 'models/history_{}_epochs.csv'.format(epochs)
+
+    with open(hist_csv, mode='w') as f:
+        hist_df.to_csv(f)
+
+    np.savetxt('models/history_{}_epochs_conmat.csv'.format(epochs), con_mat)
+
+
+
+
+
