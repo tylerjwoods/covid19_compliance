@@ -41,6 +41,7 @@ def load_images_and_labels():
     # loop over the image_paths
     for i, image_path in enumerate(image_paths):
         label = image_path.split(os.path.sep)[-2]
+        image = load_img(image_path, target_size=(224,224))
         image = img_to_array(image)
         image = preprocess_input(image)
 
