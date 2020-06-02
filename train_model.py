@@ -3,7 +3,9 @@ This script creates a model using transfer learning and
 images scraped from google.
 
 In order to use this script, run the following from the command line:
-python train_mask_detector.py --dataset dataset
+python train_model.py
+
+Hyperparameters in __main__ can be tuned as needed.
 '''
 
 # import the necessary packages
