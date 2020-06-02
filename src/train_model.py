@@ -63,6 +63,8 @@ def load_images_and_labels():
     images = np.array(images, dtype="float32")
     labels = np.array(labels)
 
+    print(labels)
+
     return images, labels
 
 def train_CNN(images, labels, epochs, learning_rate, bs):
