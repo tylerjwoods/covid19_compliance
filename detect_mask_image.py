@@ -89,7 +89,7 @@ for i in range(0, detections.shape[2]):
 
         # display the label and bounding box rectangle on the output frame
         cv2.putText(image, label, (startX, startY - 10),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+            cv2.FONT_HERSHEY_TRIPLEX, 0.45, color, 2)
         cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
 
 # show the output image
