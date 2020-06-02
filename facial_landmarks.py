@@ -42,7 +42,7 @@ for i, rect in enumerate(rects):
 
     # show the face number
     cv2.putText(image, "Face #{}".format(i+1), (x - 10, y - 10),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (66, 66, 245), 2)
+        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
     
     # loop over the (x, y)-coordinates for the facial landmarks
     # and draw them on the image
