@@ -32,7 +32,7 @@ def load_images_and_labels():
     Loads all images from directory 'images' with target as the folder
     name.
     '''
-    data = []
+    images = []
     labels = []
     # get list of images from the directory
     print('...Loading images...')
@@ -41,13 +41,19 @@ def load_images_and_labels():
     # loop over the image_paths
     for i, image_path in enumerate(image_paths):
         label = image_path.split(os.path.sep)[-2]
-        image = load_img(image_path, target_size=(224,224))
-        image = img_to_array(image)
-        image = preprocess_input(image)
+        img = load_img(image_path, target_size=(224,224))
+        img = img_to_array(img)
+        img = preprocess_input(img)
 
-        if i == 0:
-            break
-    print(image)
+        # add the image and label to the respective lists
+        images.append(img)
+        labels.append(label)
+
+    # convert the images and labels to numpy arrays
+    images = np.array(images, dtype="float32")
+    labels = np.array(labels)
+
+    print(labels)
 
 if __name__ == '__main__':
     load_images_and_labels()
