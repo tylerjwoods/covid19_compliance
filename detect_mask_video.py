@@ -73,7 +73,7 @@ def detect_and_predict_mask(frame, facenet, maskNet):
 
 # construct argument parser and parse arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("--f", "--face", type=str,
+ap.add_argument("-f", "--face", type=str,
     default="face_detector", 
     help = "path to face detector model directory")
 ap.add_argument("-m", "--model", type=str,
