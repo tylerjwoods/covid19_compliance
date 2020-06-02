@@ -46,7 +46,7 @@ def load_images_and_labels():
     images = []
     labels = []
     # get list of images from the directory
-    image_paths = list(paths.list_images('images/'))
+    image_paths = list(paths.list_images('../images/'))
     
     # loop over the image_paths
     for image_path in image_paths:
@@ -145,7 +145,7 @@ def train_CNN(images, labels, epochs, learning_rate, bs):
     plt.xlabel("Epoch #")
     plt.ylabel("Loss/Accuracy")
     plt.legend()
-    plt.savefig('plots/plot_{}_{}.png'.format(epochs, bs))
+    plt.savefig('../plots/plot_{}_{}.png'.format(epochs, bs))
 
     # return the model, history, and confusion matrix
     return model, history, con_mat 
@@ -166,13 +166,13 @@ if __name__ == '__main__':
     
     # save model
     print('...Saving model...')
-    model.save("face_mask_detector2.model", save_format="h5")
+    model.save("../models/face_mask_detector.model", save_format="h5")
 
     # save history into dataframe
     hist_df = pd.DataFrame(history.history)
-    hist_csv = 'models/history_{}_epochs.csv'.format(epochs)
+    hist_csv = '../model_history/history_{}_epochs.csv'.format(epochs)
 
     with open(hist_csv, mode='w') as f:
         hist_df.to_csv(f)
 
-    np.savetxt('models/history_{}_epochs_conmat.csv'.format(epochs), con_mat)
+    np.savetxt('../model_history/history_{}_epochs_conmat.csv'.format(epochs), con_mat)
