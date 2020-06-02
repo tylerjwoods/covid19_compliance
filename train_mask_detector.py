@@ -71,7 +71,7 @@ labels = np.array(labels)
 lb = LabelBinarizer()
 labels = lb.fit_transform(labels)
 labels = to_categorical(labels)
-print(labels)
+#print(labels)
 
 # partition the data into training and testing splits using 20% 
 # for testing
@@ -96,16 +96,16 @@ base_model = MobileNetV2(weights="imagenet", include_top=False,
 
 # construct the head of the model that will be placed on top
 # of the base model
-headModel = base_model.output
-headModel = AveragePooling2D(pool_size=(7,7))(headModel)
-headModel = Flatten(name='flatten')(headModel)
-headModel = Dense(128, activation='relu')(headModel)
-headModel = Dropout(0.5)(headModel)
-headModel = Dense(2, activation="softmax")(headModel)
+head_model = base_model.output
+head_model = AveragePooling2D(pool_size=(7,7))(head_model)
+head_model = Flatten(name='flatten')(head_model)
+head_model = Dense(128, activation='relu')(head_model)
+head_model = Dropout(0.5)(head_model)
+head_model = Dense(2, activation="softmax")(head_model)
 
 # place the head FC model on top of the base model (this will become 
 # the actual model we will train)
-model = Model(inputs=base_model.input, outputs=headModel)
+model = Model(inputs=base_model.input, outputs=head_model)
 
 # loop over all layers in the base model and freeze them so they will
 # not be updated during the first training model
