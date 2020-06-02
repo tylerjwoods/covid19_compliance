@@ -38,7 +38,7 @@ args = vars(ap.parse_args())
 
 # initialize the initial learning rate, number of epochs to train for,
 # and batch size
-INIT_LR = 1e-3
+learning_rate = 1e-3
 EPOCHS = 20
 BS = 32
 
@@ -79,7 +79,7 @@ X_train, X_test, y_train, y_test = train_test_split(data, labels,
         test_size=0.20, stratify=labels, random_state=42)
 
 # construct the training image generator for data augmentation
-aug = ImageDataGenerator(
+train_transformations = ImageDataGenerator(
     rotation_range=15,
     width_shift_range=0.2, 
     height_shift_range=0.2,
@@ -94,34 +94,33 @@ aug = ImageDataGenerator(
 base_model = MobileNetV2(weights="imagenet", include_top=False,
         input_tensor=Input(shape=(224,224,3)))
 
-# construct the head of the model that will be placed on top
-# of the base model
+# build model head
 head_model = base_model.output
 head_model = AveragePooling2D(pool_size=(7,7))(head_model)
 head_model = Flatten(name='flatten')(head_model)
 head_model = Dense(128, activation='relu')(head_model)
-head_model = Dropout(0.5)(head_model)
+head_model = Dropout(0.50)(head_model)
 head_model = Dense(2, activation="softmax")(head_model)
 
 # place the head FC model on top of the base model (this will become 
 # the actual model we will train)
 model = Model(inputs=base_model.input, outputs=head_model)
 
-# loop over all layers in the base model and freeze them so they will
-# not be updated during the first training model
+# freeze layers from transferred model
 for layer in base_model.layers:
     layer.trainable = False 
 
 # compile the model
 print("...Compiling model...")
-opt = Adam(lr = INIT_LR, decay = INIT_LR / EPOCHS)
+# initalize adam optimizer
+opt = Adam(lr = learning_rate, decay = learning_rate / EPOCHS)
 model.compile(loss="binary_crossentropy", optimizer=opt,
     metrics=["accuracy"])
 
 # train the head of the network
 print("...Training head...")
 H = model.fit(
-    aug.flow(X_train, y_train, batch_size=BS),
+    train_transformations.flow(X_train, y_train, batch_size=BS),
     steps_per_epoch=len(X_train) // BS,
     validation_data = (X_test, y_test),
     validation_steps = len(X_test) // BS,
