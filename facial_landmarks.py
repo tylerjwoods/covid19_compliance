@@ -42,12 +42,12 @@ for i, rect in enumerate(rects):
 
     # show the face number
     cv2.putText(image, "Face #{}".format(i+1), (x - 10, y - 10),
-        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (66, 66, 245), 2)
     
     # loop over the (x, y)-coordinates for the facial landmarks
     # and draw them on the image
     for (x, y) in shape:
-        cv2.circle(image, (x, y), 1, (0, 0, 255), -1)
+        cv2.circle(image, (x, y), 1, (245, 66, 221), -1)
     
 # show the output image with the face detectinos + facial landmarks
 cv2.imshow("Output", image)
