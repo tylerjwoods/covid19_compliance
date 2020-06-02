@@ -176,8 +176,3 @@ if __name__ == '__main__':
         hist_df.to_csv(f)
 
     np.savetxt('models/history_{}_epochs_conmat.csv'.format(epochs), con_mat)
-
-
-
-
-
