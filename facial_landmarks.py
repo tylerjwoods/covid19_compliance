@@ -38,7 +38,7 @@ for i, rect in enumerate(rects):
     # convert dlib's rectangle to an OpenCV-style
     # bounding box (x, y, w, h) then draw the bounding box
     (x, y, w, h) = face_utils.rect_to_bb(rect)
-    cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
+    cv2.rectangle(image, (x, y), (x+w, y+h), (66, 66, 245), 2)
 
     # show the face number
     cv2.putText(image, "Face #{}".format(i+1), (x - 10, y - 10),
