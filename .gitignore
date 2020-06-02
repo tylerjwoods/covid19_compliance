@@ -133,6 +133,7 @@ shape_predictor_68_face_landmarks.dat
 models/
 mask_detector.model
 face_mask_detector.model
+face_mask_detector2.model
 
 # folders
 no_push/
