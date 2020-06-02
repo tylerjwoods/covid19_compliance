@@ -16,7 +16,7 @@ args = vars(ap.parse_args())
 
 # initalize dlib's face detector (HOG-based)
 # then create the facial landmark predictor
-detector = dlib.get_front_face_detector()
+detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(args["shape_predictor"])
 
 # load the input image, resize it, and convert to grayscale
