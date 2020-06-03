@@ -90,7 +90,7 @@ def predict_image(image, file_name):
 
     # save the image
     print('...Saving Predicted Image...')
-    filename = 'predicted_images/{}'.format(file_name)
+    filename = 'tyler_pred.jpg'
     cv2.imwrite(filename, image)
 
 
