@@ -90,8 +90,9 @@ def predict_image(image, file_name):
 
     # save the image
     print('...Saving Predicted Image...')
-    filename = 'tyler_pred.jpg'
-    cv2.imwrite(filename, image)
+    filepath = 'predicted_images/{}'.format(file_name)
+    print('The image path is {}'.format(filepath))
+    cv2.imwrite(filepath, image)
 
 
 if __name__ == '__main__':
