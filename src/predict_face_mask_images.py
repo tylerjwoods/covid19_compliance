@@ -30,8 +30,7 @@ def predict_image(image):
     model_path = 'models/face_mask_detector.model'
     model = load_model(model_path)
 
-    # clone the image and grab the image spatial dimensions
-    orig = image.copy()
+    # grab the image spatial dimensions
     (h, w) = image.shape[:2]
 
     # use CV2 to create a 'blob' from the image
