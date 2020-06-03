@@ -104,7 +104,7 @@ if __name__ == '__main__':
 
     image = cv2.imread(args['image'])
 
-    file_name = args['image']
+    file_name = args['image'][12:]
 
     print('...Predicting Image...')
     predict_image(image, file_name)
