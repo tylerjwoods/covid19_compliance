@@ -77,22 +77,23 @@ def predict_image(image, file_name):
             color = (255, 255, 0) if label == "Mask" else (245, 66, 221)
 
             # include the probability in the label
-            label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+            label = "{}: {}%".format(label, int(max(mask, withoutMask) * 100))
 
-             # display the label and bounding box rectangle on the output frame
-            cv2.putText(image, label, (startX, startY - 10),
+             # display the label and bounding circle on the output frame
+            cv2.putText(image, label, (int((startX + endX)/2)-25, startY - 15),
                 cv2.FONT_HERSHEY_TRIPLEX, 0.7, color, 1)
-            cv2.rectangle(image, (startX, startY), (endX, endY), color, 4)
+            cv2.circle(image, (int((startX + endX)/2), int((startY + endY)/2)), 
+                       max(int((endX - startX)/2), int((endY - startY)/2)), color, 8)
 
     # show the output image
-    cv2.imshow("Output", image)
-    cv2.waitKey(0) 
+    #cv2.imshow("Mask Detector", image)
+    #cv2.waitKey(0) 
 
     # save the image
-    #print('...Saving Predicted Image...')
-    #filepath = 'predicted_images/{}'.format(file_name)
+    print('...Saving Predicted Image...')
+    filepath = 'predicted_images/{}'.format(file_name)
     #print('The image path is {}'.format(filepath))
-    #cv2.imwrite(filepath, image)
+    cv2.imwrite(filepath, image)
 
 
 if __name__ == '__main__':
