@@ -88,7 +88,7 @@ def predict_frame(image, net, model):
 
     return image
 
-def predict_video(video, file_name, size):
+def predict_video(video_path, file_name, size):
     '''
     inputs
     ------
@@ -115,7 +115,7 @@ def predict_video(video, file_name, size):
 
     # initalize the video stream, pointer to outpout video file,
     # and frame dimensions
-    vs = cv2.VideoCapture(video)
+    vs = cv2.VideoCapture(video_path)
     writer = None 
     (W, H) = (None, None)
 
@@ -187,10 +187,10 @@ if __name__ == '__main__':
     ap.add_argument("-v", "--video", required=True)
     args = vars(ap.parse_args())
 
-    video = cv2.VideoCapture(args['video'])
-
     file_name = args['video'][12:]
+
+    video_path = args['video']
 
 
     print('...Predicting Video...')
-    predict_video(video, file_name, size)
+    predict_video(video_path, file_name, size)
