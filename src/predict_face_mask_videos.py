@@ -115,7 +115,7 @@ def predict_video(video, file_name, size):
 
     # initalize the video stream, pointer to outpout video file,
     # and frame dimensions
-    vs = cv2.VideoCapture(file_name)
+    vs = cv2.VideoCapture(video)
     writer = None 
     (W, H) = (None, None)
 
@@ -127,7 +127,7 @@ def predict_video(video, file_name, size):
         # read the next frame from the file
         (success, frame) = vs.read()
 
-        print(success)
+        print('...{}...'.format(success))
 
         # if the frame was not grabbed, then end of the stream
         if not success:
@@ -164,7 +164,7 @@ def predict_video(video, file_name, size):
         j += 1
 
         if j== 100:
-            print(frame_prediction)
+            #print(frame_prediction)
             break
     
     # release teh file pointers
