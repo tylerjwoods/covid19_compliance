@@ -15,7 +15,7 @@ def predict_image(model, image):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument("--i", "--image", required=True)
+    ap.add_argument("-i", "--image", required=True)
     args = vars(ap.parse_args())
 
     a = 'model'
