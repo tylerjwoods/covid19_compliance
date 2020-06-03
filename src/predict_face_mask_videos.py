@@ -138,8 +138,8 @@ def predict_video(video, file_name, size):
         # clone the output frame, then convert it from BGR to
         # RGB ordering, resize the frame to a fixed 224x224, then
         # perform mean subtraction
-        output = frame.copy()
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        #output = frame.copy()
+        #frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         #frame = cv2.resize(frame, (224, 224)).astype("float32")
         #frame -= mean 
 
@@ -162,6 +162,7 @@ def predict_video(video, file_name, size):
         j += 1
 
         if j== 100:
+            print(frame_prediction)
             break
     
     # release teh file pointers
