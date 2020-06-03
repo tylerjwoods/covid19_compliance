@@ -85,8 +85,8 @@ def predict_image(image, file_name):
             cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
 
     # show the output image
-    cv2.imshow("Output", image)
-    cv2.waitKey(0)
+    #cv2.imshow("Output", image)
+    #cv2.waitKey(0) 
 
     # save the image
     filename = 'predicted_images/{}'.format(file_name)
