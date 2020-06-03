@@ -84,8 +84,8 @@ def predict_frame(image, net, model):
              # display the label and bounding box rectangle on the output frame
             cv2.putText(image, label, (startX, startY - 10),
                 cv2.FONT_HERSHEY_TRIPLEX, 0.7, color, 2)
-            cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
-
+            cv2.circle(image, (int((startX + endX)/2), int((startY + endY)/2)), 
+                       max(int((endX - startX)/2), int((endY - startY)/2)), color, 8)
     return image
 
 def predict_video(video_path, file_name, size):
