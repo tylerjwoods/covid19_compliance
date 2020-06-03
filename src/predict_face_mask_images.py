@@ -20,8 +20,8 @@ import os
 def predict_image(image):
     # load serialized face detector model from disk
     print("...Loading Face Detector Model...")
-    prototxt_path = '../face_detector/deploy.prototxt'
-    weights_path = '../face_detector/res10_300x300_ssd_iter_140000.caffemodel'
+    prototxt_path = 'face_detector/deploy.prototxt'
+    weights_path = 'face_detector/res10_300x300_ssd_iter_140000.caffemodel'
     net = cv2.dnn.readNet(prototxt_path, weights_path)
 
 if __name__ == '__main__':
