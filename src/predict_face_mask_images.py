@@ -18,7 +18,7 @@ if __name__ == '__main__':
     ap.add_argument("-i", "--image", required=True)
     args = vars(ap.parse_args())
 
-    a = 'model'
+    model = 'a'
 
     image = cv2.imread(args['image'])
 
