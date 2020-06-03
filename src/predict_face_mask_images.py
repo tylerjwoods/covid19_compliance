@@ -89,6 +89,7 @@ def predict_image(image, file_name):
     #cv2.waitKey(0) 
 
     # save the image
+    print('...Saving Predicted Image...')
     filename = 'predicted_images/{}'.format(file_name)
     cv2.imwrite(filename, image)
 
