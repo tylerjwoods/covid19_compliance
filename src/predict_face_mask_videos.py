@@ -117,7 +117,7 @@ def predict_video(video, file_name, size):
     # and frame dimensions
     vs = cv2.VideoCapture(file_name)
     writer = None 
-    #(W, H) = (None, None)
+    (W, H) = (None, None)
 
     # DUMMY FOR TESTING
     j = 0
