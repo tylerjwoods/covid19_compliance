@@ -119,8 +119,6 @@ def predict_video(video_path, file_name, size):
     writer = None 
     (W, H) = (None, None)
 
-    # DUMMY FOR TESTING
-    j = 0
 
     # loop over frames from the video file stream
     while True:
@@ -159,13 +157,6 @@ def predict_video(video_path, file_name, size):
         
         # write the frame_prediction to disk
         writer.write(frame_prediction)
-
-        # DUMMY FOR TESTING
-        j += 1
-
-        if j== 100:
-            #print(frame_prediction)
-            break
     
     # release the file pointers
     print("...Cleaning Up...")
