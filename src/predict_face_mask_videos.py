@@ -79,7 +79,7 @@ def predict_frame(image, net, model):
             color = (255, 255, 0) if label == "Mask" else (245, 66, 221)
 
             # include the probability in the label
-            label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+            label = "{}: {}%".format(label, int(max(mask, withoutMask) * 100))
 
              # display the label and bounding box rectangle on the output frame
             cv2.putText(image, label, (startX, startY - 10),
