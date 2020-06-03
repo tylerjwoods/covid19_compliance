@@ -81,18 +81,18 @@ def predict_image(image, file_name):
 
              # display the label and bounding box rectangle on the output frame
             cv2.putText(image, label, (startX, startY - 10),
-                cv2.FONT_HERSHEY_TRIPLEX, 0.7, color, 2)
+                cv2.FONT_HERSHEY_TRIPLEX, 0.7, color, 10)
             cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
 
     # show the output image
-    #cv2.imshow("Output", image)
-    #cv2.waitKey(0) 
+    cv2.imshow("Output", image)
+    cv2.waitKey(0) 
 
     # save the image
-    print('...Saving Predicted Image...')
-    filepath = 'predicted_images/{}'.format(file_name)
+    #print('...Saving Predicted Image...')
+    #filepath = 'predicted_images/{}'.format(file_name)
     #print('The image path is {}'.format(filepath))
-    cv2.imwrite(filepath, image)
+    #cv2.imwrite(filepath, image)
 
 
 if __name__ == '__main__':

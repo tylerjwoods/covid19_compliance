@@ -32,7 +32,7 @@ plt.style.use('ggplot')
 
 def load_images_and_labels():
     '''
-    Loads all images from directory 'images' with target as the folder
+    Loads all images from directory 'images' with targets as the folder
     name. Images were scrapped from google.
     inputs
     ------
