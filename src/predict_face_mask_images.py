@@ -17,7 +17,7 @@ import argparse
 import cv2 
 import os 
 
-def predict_image(image):
+def predict_image(image, file_name):
 
     # load serialized face detector model from disk
     print("...Loading Face Detector Model...")
@@ -88,15 +88,22 @@ def predict_image(image):
     cv2.imshow("Output", image)
     cv2.waitKey(0)
 
+    # save the image
+    filename = 'predicted_images/{}'.format(file_name)
+    cv2.imwrite(filename, image)
+
 
 if __name__ == '__main__':
-    # get image from the 
+    # get image from the argparse
+    # image MUST be in test_images directory
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--image", required=True)
     args = vars(ap.parse_args())
 
     image = cv2.imread(args['image'])
 
+    file_name = args['image']
+
     print('...Predicting Image...')
-    predict_image(image)
+    predict_image(image, file_name)
 
