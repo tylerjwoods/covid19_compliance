@@ -117,7 +117,7 @@ def predict_video(video_path, file_name, size):
     # and frame dimensions
     vs = cv2.VideoCapture(video_path)
     writer = None 
-    (W, H) = (None, None)
+    (W, H) = (None, None) 
 
 
     # loop over frames from the video file stream
