@@ -40,7 +40,7 @@ def predict_frame(image, net, model):
         (104.0, 177.0, 123.0))
 
     # pass the blob through the net and obtain face detections
-    print('...Computing Face Detections...')
+    #print('...Computing Face Detections...')
     net.setInput(blob)
     detections = net.forward()
 
@@ -127,7 +127,7 @@ def predict_video(video_path, file_name, size):
         # read the next frame from the file
         (success, frame) = vs.read()
 
-        print('...{}...'.format(success))
+        #print('...{}...'.format(success))
 
         # if the frame was not grabbed, then end of the stream
         if not success:
@@ -153,7 +153,7 @@ def predict_video(video_path, file_name, size):
         if writer is None:
             # initalize the video writer
             fourcc = cv2.VideoWriter_fourcc(*"MJPG")
-            filepath = 'predicted_videos/{}'.format(file_name)
+            filepath = 'predicted_videos/{}.avi'.format(file_name)
             writer = cv2.VideoWriter(filepath, fourcc, 30,
                 (W, H), True)
         
@@ -167,7 +167,7 @@ def predict_video(video_path, file_name, size):
             #print(frame_prediction)
             break
     
-    # release teh file pointers
+    # release the file pointers
     print("...Cleaning Up...")
     writer.release()
     vs.release()
@@ -187,7 +187,7 @@ if __name__ == '__main__':
     ap.add_argument("-v", "--video", required=True)
     args = vars(ap.parse_args())
 
-    file_name = args['video'][12:]
+    file_name = args['video'][12:-4]
 
     video_path = args['video']
 
