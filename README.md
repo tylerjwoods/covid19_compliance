@@ -27,8 +27,9 @@ As of March 2020, the world changed when COVID-19 swept across the United States
 ### Goal
 
 Imagine that you're walking into Costco and you see this sign. There's an employee at the door cheaking for compliance.
-
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/costco.jpeg" width="400" height="400" />
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/costco.jpeg" width="400" height="400" title="costco" />
+</p>
 
 You walk into the store and only a minute later, you see a customer with their face mask off. There aren't enough employees to make sure every customer is KEEPING their mask on.
 
@@ -51,23 +52,31 @@ I then went through each image and deleted images that were not good to be used 
 
 Transfer learning in machine learning focuses on storing knowledge gained while solving one problem and applying it to a different but related problem. In this situation, I used a model trained on the Imagenet images and classes with varying architectures (Xception, ResNet50, and MobileNetV2). After varying the epochs and batchsizes, some architectures had extremely high accuracy such as below.
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/plot_20_32_MobileNetV2.png" width="400" height="400" >
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/plot_20_32_MobileNetV2.png" width="800" height="800" title="MobileNetV2" />
+</p>
 
 For comparing the various models, I built an ROC curve and displayed the AUC scores:
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/roc_curve.png" width="400" height="400" >
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/roc_curve.png" width="800" height="800" title="roc_curve" />
+</p>
 
 ### Application
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
+As shown below, the model does a good job of identifying wearing a mask and not wearing a mask.
 
-The model does a good job of identifying wearing a mask. But what about no mask?
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
+</p>
 
-<img align="center" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
 
-Here we see that, again, the model is doing a good job of predicting no mask. So what about if there's an image with both a person wearing a mask and a person not wearing a mask?
+So what about if there's an image with both a person wearing a mask and a person not wearing a mask?
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler_malia.jpg" width="400" height="400" >
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler_malia.jpg" width="400" height="400" >
+</p>
 
 Since the model is binary, i.e., it will predict 'mask' if it finds a mask anywhere in the image, the model found the face mask and predicted face mask. 
 
