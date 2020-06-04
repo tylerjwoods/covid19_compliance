@@ -53,13 +53,13 @@ I then went through each image and deleted images that were not good to be used 
 Transfer learning in machine learning focuses on storing knowledge gained while solving one problem and applying it to a different but related problem. In this situation, I used a model trained on the Imagenet images and classes with varying architectures (Xception, ResNet50, and MobileNetV2). After varying the epochs and batchsizes, some architectures had extremely high accuracy such as below.
 
 <p align="center">
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/plot_20_32_MobileNetV2.png" width="400" height="400" title="MobileNetV2" />
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/plot_20_32_MobileNetV2.png" width="800" height="800" title="MobileNetV2" />
 </p>
 
 For comparing the various models, I built an ROC curve and displayed the AUC scores:
 
 <p align="center">
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/roc_curve.png" width="400" height="400" title="roc_curve" />
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/roc_curve.png" width="800" height="800" title="roc_curve" />
 </p>
 
 ### Application
@@ -67,8 +67,8 @@ For comparing the various models, I built an ROC curve and displayed the AUC sco
 As shown below, the model does a good job of identifying wearing a mask and not wearing a mask.
 
 <p align="center">
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
-<img align="center" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
+<img align="left" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
+<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
 </p>
 
 
