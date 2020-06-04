@@ -46,7 +46,7 @@ def predict(image, file_name):
 
     # save the image
     print('...Saving Predicted Image...')
-    filepath = 'predicted_images/{}_1'.format(file_name)
+    filepath = 'predicted_images/a_{}'.format(file_name)
     #print('The image path is {}'.format(filepath))
     cv2.imwrite(filepath, image)
 
