@@ -28,7 +28,7 @@ As of March 2020, the world changed when COVID-19 swept across the United States
 
 Imagine that you're walking into Costco and you see this sign. There's an employee at the door cheaking for compliance.
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/costco.jpeg" width="400" height="400" />
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/costco.jpeg" width="400" height="400" />
 
 You walk into the store and only a minute later, you see a customer with their face mask off. There aren't enough employees to make sure every customer is KEEPING their mask on.
 
