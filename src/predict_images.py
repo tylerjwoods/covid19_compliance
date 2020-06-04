@@ -8,7 +8,7 @@ import cv2
 import os 
 
 def predict(image, file_name):
-    # load face mask detector model from disk
+    # load face mask detector model
     print("...Loading Face Mask Detector Model...")
     model_path = 'models/face_mask_detector.model'
     model = load_model(model_path)
@@ -16,15 +16,17 @@ def predict(image, file_name):
     # read image using cv2
     image = cv2.imread(image)
 
+    # make copy of image, 
     # convert from BGR to RGB, resize to 224x224, and preprocess it
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image = cv2.resize(image, (224, 224))
-    image = img_to_array(image)
-    image = preprocess_input(image)
-    image = np.expand_dims(image, axis=0)
+    img = image.copy()
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = cv2.resize(img, (224, 224))
+    img = img_to_array(img)
+    img = preprocess_input(img)
+    img = np.expand_dims(img, axis=0)
 
     # use model to predict on the image
-    mask, without_mask = model.predict(image)[0]
+    mask, without_mask = model.predict(img)[0]
 
     # generate a label and color using the prediction
     if mask > without_mask:
@@ -46,7 +48,7 @@ def predict(image, file_name):
 
     # save the image
     print('...Saving Predicted Image...')
-    filepath = 'predicted_images/a_{}'.format(file_name)
+    filepath = 'predicted_images/{}'.format(file_name)
     #print('The image path is {}'.format(filepath))
     cv2.imwrite(filepath, image)
 
