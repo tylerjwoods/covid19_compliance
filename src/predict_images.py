@@ -34,7 +34,7 @@ def predict(image, file_name):
         color = (255, 255, 0)
     else:
         label = "No Mask"
-        color = (245, 66, 221)
+        color = (255, 255, 0)
     
     # include the probability in the label
     label = "{}: {}%".format(label, int(max(mask, without_mask) * 100))
