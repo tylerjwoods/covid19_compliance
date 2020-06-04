@@ -52,23 +52,31 @@ I then went through each image and deleted images that were not good to be used 
 
 Transfer learning in machine learning focuses on storing knowledge gained while solving one problem and applying it to a different but related problem. In this situation, I used a model trained on the Imagenet images and classes with varying architectures (Xception, ResNet50, and MobileNetV2). After varying the epochs and batchsizes, some architectures had extremely high accuracy such as below.
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/plot_20_32_MobileNetV2.png" width="400" height="400" >
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/plot_20_32_MobileNetV2.png" width="400" height="400" title="MobileNetV2" />
+</p>
 
 For comparing the various models, I built an ROC curve and displayed the AUC scores:
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/roc_curve.png" width="400" height="400" >
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/roc_curve.png" width="400" height="400" title="roc_curve" />
+</p>
 
 ### Application
 
+As shown below, the model does a good job of identifying wearing a mask and not wearing a mask.
+
+<p align="center">
 <img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
-
-The model does a good job of identifying wearing a mask. But what about no mask?
-
 <img align="center" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
+</p>
 
-Here we see that, again, the model is doing a good job of predicting no mask. So what about if there's an image with both a person wearing a mask and a person not wearing a mask?
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler_malia.jpg" width="400" height="400" >
+So what about if there's an image with both a person wearing a mask and a person not wearing a mask?
+
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler_malia.jpg" width="400" height="400" >
+</p>
 
 Since the model is binary, i.e., it will predict 'mask' if it finds a mask anywhere in the image, the model found the face mask and predicted face mask. 
 
