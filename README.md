@@ -90,6 +90,21 @@ The next step would be for detecting faces. The program would be then be broken 
 
 ### Face Capture
 
+Face detection is not an easy act to perform even for CNN learners. Models have been built and distrubited to assist with this task. In the 'References' section of this README, I have a link to Adrian Rosebrock's page who does an amazing job teaching and showing object detection using Python.
+
+Now that the face capture is being performed, how do the predictions look now?
+
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/tyler.jpg" width="400" height="400" >
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/no_mask_tyler.jpg" width="400" height="400" />
+</p>
+
+And the real test for the two-person:
+
+<p align="center">
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/tyler_malia.jpg" width="400" height="400" >
+</p>
+
 ### Video Processing
 
 ![demo gif](https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/tyler1.gif)
@@ -98,6 +113,13 @@ The next step would be for detecting faces. The program would be then be broken 
 
 "MobileNetV2." - Applications - Tensorflow Documentation https://www.tensorflow.org/api_docs/python/tf/keras/applications/MobileNetV2
 
-“ResNet-50.” Applications - Keras Documentation https://keras.io/applications/#resnet.
+“ResNet-50.” Applications - Keras Documentation https://keras.io/applications/#resnet
+
+Rosebrock, Adrian. "Object Detection with Deep Learning and OpenCV." PyImageSearch,  11 Sep 2017, https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/
+
 
 ## Acknowledgements
+
+* Galvanize instructors, Phil Geurin, Andrew Nicholls, and Jack Bennetto.
+* My fellow cohort-mates in the Galvanize DSI who all banded together to teach and learn from each other while social distancing.
+* Family and friends (@sversage) for encouraging me to enroll and complete the Galvanize course.
