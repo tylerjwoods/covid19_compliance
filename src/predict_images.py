@@ -40,7 +40,7 @@ def predict(image, file_name):
     label = "{}: {}%".format(label, int(max(mask, without_mask) * 100))
 
     # display label on the image
-    cv2.putText(image, label, (10, 10), cv2.FONT_HERSHEY_TRIPLEX, 0.7, color, 1)
+    cv2.putText(image, label, (60, 60), cv2.FONT_HERSHEY_TRIPLEX,2, color, 1)
 
     # show the output image
     #cv2.imshow("Mask Detector", image)
@@ -48,7 +48,7 @@ def predict(image, file_name):
 
     # save the image
     print('...Saving Predicted Image...')
-    filepath = 'predicted_images/{}'.format(file_name)
+    filepath = 'predicted_images/first_{}'.format(file_name)
     #print('The image path is {}'.format(filepath))
     cv2.imwrite(filepath, image)
 
