@@ -62,6 +62,8 @@ For comparing the various models, I built an ROC curve and displayed the AUC sco
 <img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/plots/roc_curve.png" width="800" height="800" title="roc_curve" />
 </p>
 
+Note: Although the Xception architecture had a slightly higher AUC score, the MobileNetV2 architecture was able to run at about 3x the speed when building the new model so that one was chosen for this project.
+
 ### Application
 
 As shown below, the model does a good job of identifying wearing a mask and not wearing a mask.
@@ -107,7 +109,15 @@ And the real test for the two-person:
 
 ### Video Processing
 
+Photos are great for a computer to 'see', but the real test is going to be for videos. Putting the face detector and face mask detector to work:
+
 ![demo gif](https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/tyler1.gif)
+
+And checking for the two-person test:
+
+![demo gif2](https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/tyler_malia.gif)
+
+The two videos do a good job at predicting face masks or not. However, in the second video, you can see that there is a lot of 'flickering' when the mask is on for the individual in the background. The face detector is having a hard time 'seeing' that there is a face there, mostly because the face detector model is not trained on people wearing masks.
 
 ## References
 
@@ -115,7 +125,7 @@ And the real test for the two-person:
 
 “ResNet-50.” Applications - Keras Documentation https://keras.io/applications/#resnet
 
-Rosebrock, Adrian. "Object Detection with Deep Learning and OpenCV." PyImageSearch,  11 Sep 2017, https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/
+Rosebrock, Adrian. "Object Detection with Deep Learning and OpenCV." PyImageSearch, 11 Sep 2017, https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/
 
 
 ## Acknowledgements
