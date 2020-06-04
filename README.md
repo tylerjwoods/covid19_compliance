@@ -21,7 +21,18 @@ COVID-19 Face Mask and Social Distancing
 
 ### Context
 
+As of March 2020, the world changed when COVID-19 swept across the United States and the rest of the world. Stores were shutdown and interaction between people was halted. As the world begins to reopen, health officials urge people to wear face masks to help prevent the spread of COVID-19.
+
 ### Goal
+
+Imagine that you're walking into Costco and you see this sign. There's an employee at the door cheaking for compliance.
+
+<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/costco.jpeg">
+
+You walk into the store and only a minute later, you see a customer with their face mask off. There aren't enough employees to make sure every customer is KEEPING their mask on.
+
+The goal of this project is to automatically detect if a person is wearing a face mask in images and videos.
+
 
 ## Dataset
 
@@ -39,7 +50,7 @@ COVID-19 Face Mask and Social Distancing
 
 The model does a good job of identifying wearing a mask. But what about no mask?
 
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg">
+<img align="center" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="200" height="200" />
 
 Here we see that, again, the model is doing a good job of predicting no mask. So what about if there's an image with both a person wearing a mask and a person not wearing a mask?
 
