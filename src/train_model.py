@@ -12,6 +12,8 @@ Hyperparameters in __main__ can be tuned as needed.
 import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import MobileNetV2
+#from tensorflow.keras.applications import Xception
+#from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import AveragePooling2D, Dropout, Flatten, Dense, Input
 from tensorflow.keras.optimizers import Adam
@@ -97,6 +99,7 @@ def train_CNN(images, labels, epochs, learning_rate, bs):
     # left off
     base_model = MobileNetV2(weights="imagenet", include_top=False,
             input_tensor=Input(shape=(224,224,3)))
+    base_type = 'MobileNetV2'
 
     # build model head
     head_model = base_model.output
@@ -136,16 +139,14 @@ def train_CNN(images, labels, epochs, learning_rate, bs):
     #     target_names=lb.classes_))
 
     # plot the loss and accuracy
-    N = epochs
-    plt.figure()
-    plt.plot(np.arange(0,N), history.history["loss"], label="train_loss")
-    plt.plot(np.arange(0,N), history.history["val_loss"], label="val_loss")
-    plt.plot(np.arange(0,N), history.history["accuracy"], label="train_acc")
-    plt.plot(np.arange(0,N), history.history["val_accuracy"], label="val_acc")
-    plt.xlabel("Epoch #")
-    plt.ylabel("Loss/Accuracy")
-    plt.legend()
-    plt.savefig('../plots/plot_{}_{}.png'.format(epochs, bs))
+    fig, ax = plt.subplots()
+    ax.plot(np.arange(0,epochs), history.history["accuracy"], label="Training Accuracy")
+    ax.plot(np.arange(0,epochs), history.history["val_accuracy"], label="Validation Accuracy")
+    ax.set_xlabel("Epoch #", fontsize=12)
+    ax.set_ylabel("Loss/Accuracy", fontsize=12)
+    ax.set_title('Model Accuracy with {}'.format(base_type), fontsize=14)
+    ax.legend()
+    plt.savefig('../plots/plot_{}_{}_{}.png'.format(epochs, bs, base_type))
 
     # return the model, history, and confusion matrix
     return model, history, con_mat 
@@ -153,9 +154,9 @@ def train_CNN(images, labels, epochs, learning_rate, bs):
 if __name__ == '__main__':
     # this can be changed to fine-tune model as needed
     # model is greater than 95% accurate with these
-    epochs = 20
+    epochs = 40
     learning_rate = 0.001
-    batch_size = 32
+    batch_size = 16
 
     print('...Loading images...')
     images, labels = load_images_and_labels()
@@ -165,8 +166,8 @@ if __name__ == '__main__':
                                         learning_rate, batch_size)
     
     # save model
-    print('...Saving model...')
-    model.save("../models/face_mask_detector.model", save_format="h5")
+    #print('...Saving model...')
+    #model.save("../models/face_mask_detector.model", save_format="h5")
 
     # save history into dataframe
     hist_df = pd.DataFrame(history.history)
