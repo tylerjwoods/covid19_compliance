@@ -67,8 +67,8 @@ For comparing the various models, I built an ROC curve and displayed the AUC sco
 As shown below, the model does a good job of identifying wearing a mask and not wearing a mask.
 
 <p align="center">
-<img align="left" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
-<img align="right" src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
 </p>
 
 
