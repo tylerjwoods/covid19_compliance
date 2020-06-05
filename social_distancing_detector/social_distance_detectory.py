@@ -19,7 +19,7 @@ ap.add_argument("-d", "--display", type=int, default=1,
 args = vars(ap.parse_args())
 
 # load the COCO class labels our YOLO model was trained on
-labelsPath = os.path.sep.join([config.MODEL_PATH, "coco.names"])
+labelsPath = os.path.sep.join([config.model_path, "coco.names"])
 LABELS = open(labelsPath).read().strip().split("\n")
 
 # derive the paths to the YOLO weights and model configuration
@@ -32,10 +32,10 @@ net = cv2.dnn.readNetFromDarknet(configPath, weightsPath)
 
 # check if we are going to use GPU
 if config.use_gpu:
-	# set CUDA as the preferable backend and target
-	print("[INFO] setting preferable backend and target to CUDA...")
-	net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
-	net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+    # set CUDA as the preferable backend and target
+    print("[INFO] setting preferable backend and target to CUDA...")
+    net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+    net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
 # determine only the *output* layer names that we need from YOLO
 ln = net.getLayerNames()
@@ -120,4 +120,15 @@ while True:
         if key == ord('q'):
             break 
 
-    # 
+    # if an output video file path has been supplied and the video
+    # writer has not been initalized, do so now
+    if args["output"] != "" and writer is None:
+        # initialize our video writer
+        fourcc = cv2.VideoWriter_fourcc(*"MJPG")
+        writer = cv2.VideoWriter(args["output"], fourcc, 25,
+            (frame.shape[1], frame.shape[0]), True)
+
+    # if the video writer is not None, write the frame to the output
+    # video file
+    if writer is not None:
+        writer.write(frame)
