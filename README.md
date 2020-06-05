@@ -15,6 +15,7 @@ COVID-19 Face Mask and Social Distancing
 - [Face Capture and Video Processing](#face-capture-and-video-processing)
   - [Face Capture](#face-capture)
   - [Video Processing](#video-processing)
+- [Social Distance Detector](#social-distance-detector)
 - [References](#references)
 - [Acknowledgements](#acknowledgements)
 
@@ -119,6 +120,10 @@ And checking for the two-person test:
 
 The two videos do a good job at predicting face masks or not. However, in the second video, you can see that there is a lot of 'flickering' when the mask is on for the individual in the background. The face detector is having a hard time 'seeing' that there is a face there, mostly because the face detector model is not trained on people wearing masks.
 
+## Social Distance Detector
+
+In addition to face masks, health experts also recommend that the public maintain a 6
+
 ## References
 
 "MobileNetV2." - Applications - Tensorflow Documentation https://www.tensorflow.org/api_docs/python/tf/keras/applications/MobileNetV2
@@ -126,6 +131,8 @@ The two videos do a good job at predicting face masks or not. However, in the se
 “ResNet-50.” Applications - Keras Documentation https://keras.io/applications/#resnet
 
 Rosebrock, Adrian. "Object Detection with Deep Learning and OpenCV." PyImageSearch, 11 Sep 2017, https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/
+
+Rosebrock, Adrian. "OpenCV Social Distancing Detector." PyImageSearch, 01 June 2020, https://www.pyimagesearch.com/2020/06/01/opencv-social-distancing-detector/
 
 
 ## Acknowledgements

@@ -141,3 +141,12 @@ no_push/
 
 # files
 test.py
+social_distancing_detector/Korea_Full.mp4
+social_distancing_detector/korea.mp4
+social_distancing_detector/korea_trim.mp4
+social_distancing_detector/korea_trim_1.mp4
+social_distancing_detector/output.mp4
+social_distancing_detector/pedestrians_trim.mp4
+social_distancing_detector/social_distance_detector.ipynb
+social_distancing_detector/korea_trim_output.avi
+social_distancing_detector/output_trim.avi
