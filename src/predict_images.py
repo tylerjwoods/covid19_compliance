@@ -1,3 +1,8 @@
+'''
+To use this function, run
+python src/predict_images.py -i test_images/tyler.jpg
+'''
+
 # import necessary packages
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array

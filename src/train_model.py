@@ -6,7 +6,12 @@ In order to use this script, run the following from the command line:
 python train_model.py
 
 Hyperparameters in __main__ can be tuned as needed.
+
+
+To use this function, run first cd into src then 
+python train_model.py
 '''
+
 
 # import the necessary packages
 import numpy as np

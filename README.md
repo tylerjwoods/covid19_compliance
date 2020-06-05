@@ -101,7 +101,7 @@ Now that the face capture is being performed, how do the predictions look now?
 <img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/no_mask_tyler.jpg" width="400" height="400" />
 </p>
 
-And the real test for the two-person:
+And testing for the two-person:
 
 <p align="center">
 <img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/tyler_malia.jpg" width="400" height="400" >
@@ -132,4 +132,4 @@ Rosebrock, Adrian. "Object Detection with Deep Learning and OpenCV." PyImageSear
 
 * Galvanize instructors, Phil Geurin, Andrew Nicholls, and Jack Bennetto.
 * My fellow cohort-mates in the Galvanize DSI who all banded together to teach and learn from each other while social distancing.
-* Family and friends (@sversage) for encouraging me to enroll and complete the Galvanize course.
+* Family and friends for encouraging me to enroll and complete the Galvanize course.

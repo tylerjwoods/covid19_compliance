@@ -134,6 +134,7 @@ models/
 mask_detector.model
 face_mask_detector.model
 face_mask_detector2.model
+social_distancing_detector/yolo-coco/yolov3.weights
 
 # folders
 no_push/
