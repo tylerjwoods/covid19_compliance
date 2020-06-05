@@ -53,7 +53,7 @@ def detect_people(frame, net, ln, personIdx = 0):
                 # the bounding box followed by the boxes' width and
                 # height
                 box = detection[0:4] * np.array([W,H,W,H])
-                (centerX, centerY, width, height): box.astype("int")
+                (centerX, centerY, width, height) = box.astype("int")
 
                 # use the center (x, y) coords to derive the top
                 # and left center of the bounding box
