@@ -122,7 +122,9 @@ The two videos do a good job at predicting face masks or not. However, in the se
 
 ## Social Distance Detector
 
-In addition to face masks, health experts also recommend that the public maintain a 6
+In addition to face masks, health experts also recommend that the public maintain a 6-ft distance at all times. Again, Adrian Rosebrock beat me to this and put out a great tutorial on using YOLOv3 to detect people in images and then use that detection to calculate if two person are too close together. See the link in 'References'.
+
+The first iteration of the distance detector hard-coded in a minimum distance of 50 pixels that two people must be from each other. 
 
 ## References
 
