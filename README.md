@@ -124,7 +124,15 @@ The two videos do a good job at predicting face masks or not. However, in the se
 
 In addition to face masks, health experts also recommend that the public maintain a 6-ft distance at all times. Again, Adrian Rosebrock beat me to this and put out a great tutorial on using YOLOv3 to detect people in images and then use that detection to calculate if two person are too close together. See the link in 'References'.
 
-The first iteration of the distance detector hard-coded in a minimum distance of 50 pixels that two people must be from each other. 
+The first iteration of the distance detector hard-coded in a minimum distance of 50 pixels that two people must be from each other. I decided to use the average height people in the frame. Also building upon PyImageSearch's code, I use the average height of people in the frame and the average height of humans to create a scale and then display a predicted distance between two people who were found to be too close together.
+
+![demo gif3](https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/ped_trim_2.gif)
+
+This works well for near bird's-eye view of the people in the frame. 
+
+I also tried to apply the code to a different view - walking around in a city. This proved to be much more difficult as people in the background are predicted as being too close.
+
+![demo gif4](https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/korea_trim_output_2.gif)
 
 ## References
 
