@@ -148,7 +148,7 @@ def train_CNN(images, labels, epochs, learning_rate, bs):
     ax.plot(np.arange(0,epochs), history.history["accuracy"], label="Training Accuracy")
     ax.plot(np.arange(0,epochs), history.history["val_accuracy"], label="Validation Accuracy")
     ax.set_xlabel("Epoch #", fontsize=12)
-    ax.set_ylabel("Loss/Accuracy", fontsize=12)
+    ax.set_ylabel("Accuracy", fontsize=12)
     ax.set_title('Model Accuracy with {}'.format(base_type), fontsize=14)
     ax.legend()
     plt.savefig('../plots/plot_{}_{}_{}.png'.format(epochs, bs, base_type))
@@ -159,9 +159,9 @@ def train_CNN(images, labels, epochs, learning_rate, bs):
 if __name__ == '__main__':
     # this can be changed to fine-tune model as needed
     # model is greater than 95% accurate with these
-    epochs = 40
+    epochs = 20
     learning_rate = 0.001
-    batch_size = 16
+    batch_size = 32
 
     print('...Loading images...')
     images, labels = load_images_and_labels()
@@ -171,8 +171,8 @@ if __name__ == '__main__':
                                         learning_rate, batch_size)
     
     # save model
-    #print('...Saving model...')
-    #model.save("../models/face_mask_detector.model", save_format="h5")
+    print('...Saving model...')
+    model.save("../models/face_mask_detector.model", save_format="h5")
 
     # save history into dataframe
     hist_df = pd.DataFrame(history.history)

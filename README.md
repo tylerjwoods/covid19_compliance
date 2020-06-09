@@ -32,7 +32,7 @@ Imagine that you're walking into Costco and you see this sign. There's an employ
 <img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/demo/costco.jpeg" width="400" height="400" title="costco" />
 </p>
 
-You walk into the store and only a minute later, you see a customer with their face mask off. There aren't enough employees to make sure every customer is KEEPING their mask on.
+Being a data scientist, you think to yourself, 'Is there a way to automatically detect a person wearing a face mask, rather than making an employee spend their time checking?' There aren't enough employees to make sure every customer is KEEPING their mask on.
 
 The goal of this project is to automatically detect if a person is wearing a face mask in images and videos.
 
