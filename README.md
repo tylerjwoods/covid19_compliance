@@ -98,14 +98,14 @@ Face detection is not an easy act to perform even for CNN learners. Models have 
 Now that the face capture is being performed, how do the predictions look now?
 
 <p align="center">
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/tyler.jpg" width="400" height="400" >
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/no_mask_tyler.jpg" width="400" height="400" />
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/tyler.jpg" width="400" height="300" >
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/no_mask_tyler.jpg" width="400" height="300" />
 </p>
 
 And testing for the two-person:
 
 <p align="center">
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/tyler_malia.jpg" width="400" height="400" >
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/tyler_malia.jpg" width="400" height="300" >
 </p>
 
 ### Video Processing
