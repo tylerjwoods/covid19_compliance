@@ -70,15 +70,15 @@ Note: Although the Xception architecture had a slightly higher AUC score, the Mo
 As shown below, the model does a good job of identifying wearing a mask and not wearing a mask.
 
 <p align="center">
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="400" >
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="400" />
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler.jpg" width="400" height="300" >
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_no_mask_tyler.jpg" width="400" height="300" />
 </p>
 
 
 So what about if there's an image with both a person wearing a mask and a person not wearing a mask?
 
 <p align="center">
-<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler_malia.jpg" width="400" height="400" >
+<img src="https://github.com/tylerjwoods/covid19_compliance/blob/master/predicted_images/first_tyler_malia.jpg" width="400" height="300" >
 </p>
 
 Since the model is binary, i.e., it will predict 'mask' if it finds a mask anywhere in the image, the model found the face mask and predicted face mask. 
